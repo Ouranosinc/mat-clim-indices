@@ -81,3 +81,10 @@ indicator = utm(data, dates)
 
 Defn. Returns the value of 'Unités thermiques maïs'.
 ```
+
+### Degree days during growing season
+```matlab
+indicator = grow_dd(data, thres::Float)
+
+Defn. Returns the growing degree days, as defined by the cumulative tempeature over the threshold 'thres'.
+```

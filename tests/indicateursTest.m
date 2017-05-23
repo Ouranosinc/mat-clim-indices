@@ -30,3 +30,8 @@ grseason = growseasonlength(data, 2); % end date
 assert(grseason.data(1, 1) == 313);
 grseason = growseasonlength(data, 3); % length date
 assert(grseason.data(1, 1) == 198);
+
+growdd = grow_dd(data, 5);
+assert(roundn(growdd.data(1, 1), -3) == 1908.689);
+
+utmdata = utm(data);

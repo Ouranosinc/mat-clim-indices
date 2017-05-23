@@ -15,10 +15,10 @@ if size(data.tasmin(dates(:,1)==min_year,:),1)<360
     error('this indicator requires daily data')
 end
 
-spring_frost = indicators_atlas_final(5.0,data,dates);
+spring_frost = lastspringfrost(data, 0);
 last_spring_frost=median(spring_frost.data,1);
 t128=12.8;
-AutomnFallFrost =indicators_atlas_final(6.2,data,dates);
+AutomnFallFrost = firstfallfrost(data, -2);
 firstKillFrost = AutomnFallFrost.data;
 
 %error('not finished implementing')
@@ -76,19 +76,19 @@ for y=min_year:max_year
         Ymax(day_temp_max(first128{i}:fin,i)<10)=0;
         Ymin(day_temp_min(first128{i}:fin,i)<4.4)=0;
         
-        if code == 13.1
-            indicator.data(y-min_year +1,i)=new_dates(first128{i})-datenum([y,1,1]);
-            % pas de -5 parceq u'on veut la cinquieme journee de la
-            % serie de 5
-            indicator.units = 'jour julien';
-        elseif code == 13.2
-            indicator.units = 'jour julien';
-            
-            indicator.data(y-min_year +1,i)=firstKillFrost(year_ind,i);
-        elseif code ==13.3
+%         if code == 13.1
+%             indicator.data(y-min_year +1,i)=new_dates(first128{i})-datenum([y,1,1]);
+%             % pas de -5 parceq u'on veut la cinquieme journee de la
+%             % serie de 5
+%             indicator.units = 'jour julien';
+%         elseif code == 13.2
+%             indicator.units = 'jour julien';
+%             
+%             indicator.data(y-min_year +1,i)=firstKillFrost(year_ind,i);
+%         elseif code ==13.3
             indicator.data(y-min_year +1,i)=sum((Ymax + Ymin)/2);
             indicator.units = 'UTM (cumul)';
-        end
+%         end
     end
     indicator.dates(y-min_year +1,:) = [y 8 1];
     

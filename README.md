@@ -4,7 +4,7 @@ This repo is for Climate indices in MatLab.
 # Information
 All of the functions takes data structure such as:
 
-```MATLAB
+```matlab
 data.tasmin::Array
 data.tasmax::Array
 data.pr::Array
@@ -19,43 +19,43 @@ Some functions needs other argument, such as the variable field. For example, `t
 
 The functions returns a struct.
 
-```
+```matlab
 indicator = annualmean(data::Struct, dates::datevec, var::String)
 
 Defn. Returns the annual mean values of variable 'var'.
 ```
 
-```
+```matlab
 indicator = annualmax(data::Struct, dates::datevec, var::String)
 
 Defn. Returns the annual maximum values of variable 'var'.
 ```
 
-```
+```matlab
 indicator = annualmin(data::Struct, dates::datevec, var::String)
 
 Defn. Returns the annual minimum values of variable 'var'.
 ```
 
-```
+```matlab
 indicator = growseasonlength(data::Struct, dates::datevec)
 
 Defn. Returns the length of the growing season. Needs variable 'tas' in data struct.
 ```
 
-```
+```matlab
 indicator = pr_growseason_mean(data::Struct, dates::datevec, var::String)
 
 Defn. Mean precipitation during the growing season. Needs variables 'pr' and 'tas' in data struct.
 ```
 
-```
+```matlab
 indicator = tasmax_thresover(data::Struct, dates::datevec, thres::Int/Float)
 
-Defn. Returns the frequency of tasmax over a custom threshold 'thres'.Needs variables 'tasmax' data struct.
+Defn. Returns the frequency of tasmax over a custom threshold 'thres'. Needs variables 'tasmax' data struct.
 ```
 
-```
+```matlab
 indicator = utm(data::Struct, dates::datevec, thres::Int/Float)
 
 Defn. Returns the value of 'Unités thermiques maïs'.

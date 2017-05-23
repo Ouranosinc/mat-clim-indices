@@ -116,7 +116,7 @@ indicator = cnfd(data)
 
 Defn. Returns the length of the frost-free season. Hardcoded to lastspringfrost of 0 Celsius and firstfallfrost of -2 Celsius.
 
-N.B. cnfd stands for "consecutive no frost days".
+N.B. cnfd stands for 'consecutive no frost days'.
 ```
 
 ### First fall frost

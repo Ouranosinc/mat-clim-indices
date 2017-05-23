@@ -2,43 +2,47 @@
 This repo is for Climate indices in MATLAB.
 
 # Information
-All of the functions takes data structure with the variables as fields. The variables array can be of dimensions 1, 2 or 3.
+The functions takes a data structure with the variables as fields. The variables array can be of dimensions 1, 2 or 3.
 
 The data struct is as follows.
 
 ```matlab
-data.tasmin
-data.tasmax
-data.pr
-data.tas
+data.tasmin % Daily minimum temperature
+data.tasmax % Daily maximum temperature
+data.pr % Daily precipitation accumulation
+data.tas % Daily mean temperature
 ```
 
 A time vector of size `MxN` is also necessary, where `M` is the number of timesteps and `N` has at least a length of 3 (year, month, day). This can be created by the `MATLAB` function `datevec`.
 
 Some functions needs other argument, such as the variable field. For example, `tas`, `pr`, `tasmax`, `tasmin` is needed for functions that calculate annual means, max and minium (i.e. `annualmean`, `annualmin`, `annualmax`).
 
-## Functions
+# Functions
 
 The functions returns a struct.
 
+### Annual mean
 ```matlab
 indicator = annualmean(data, dates, var::String)
 
 Defn. Returns the annual mean values of variable 'var'.
 ```
 
+### Annual maximum
 ```matlab
 indicator = annualmax(data, dates, var::String)
 
 Defn. Returns the annual maximum values of variable 'var'.
 ```
 
+### Annual minimum
 ```matlab
 indicator = annualmin(data, dates, var::String)
 
 Defn. Returns the annual minimum values of variable 'var'.
 ```
 
+### Growing season (length, start date, end date)
 ```matlab
 indicator = growseasonlength(data, dates, code::Int)
 
@@ -48,18 +52,21 @@ Code = 2 return the end date of the growing season (julian day)
 Code = 3 return the length of the growing season (days)
 ```
 
+### Mean precipitation during the growing season
 ```matlab
 indicator = pr_growseason_mean(data, dates)
 
 Defn. Mean precipitation during the growing season. Needs variables 'pr' and 'tas' in data struct.
 ```
 
+### Annual frequency over a threshold
 ```matlab
-indicator = tasmax_thresover(data, dates, thres::Int/Float)
+indicator = thresover(data, dates, var, thres::Int/Float)
 
 Defn. Returns the frequency of tasmax over a custom threshold 'thres'. Needs variables 'tasmax' data struct.
 ```
 
+### Unités thermique du maïs (Corn Heat Unit)
 ```matlab
 indicator = utm(data, dates)
 

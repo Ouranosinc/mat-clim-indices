@@ -31,7 +31,11 @@ assert(grseason.data(1, 1) == 313);
 grseason = growseasonlength(data, 3); % length date
 assert(grseason.data(1, 1) == 198);
 
+%% Growing degree days
 growdd = grow_dd(data, 5);
 assert(roundn(growdd.data(1, 1), -3) == 1908.689);
 
+%% Corn Heat Unit
 utmdata = utm(data);
+assert(roundn(utmdata.data(1, 1), -3) == 3076.387);
+

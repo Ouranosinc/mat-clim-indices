@@ -21,6 +21,12 @@ Some functions needs other argument, such as the variable field. For example, `t
 
 The functions returns a struct.
 
+```matlab
+indicator.data % Data array
+indicator.dates % Date array
+indicator.units % Unit
+```
+
 ### Annual mean
 ```matlab
 indicator = annualmean(data, dates, var::String)

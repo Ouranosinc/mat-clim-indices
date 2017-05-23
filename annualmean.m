@@ -8,7 +8,7 @@ function indicator = annualmean(data, dates, var)
   indicator.data  = zeros(size(min_year:max_year, 2), size(data.(fields{1}), find(~time_dim)));
   indicator.dates = zeros(size(min_year:max_year, 1));
   
-  if isfield(data, var) % strange choice of if
+  if isfield(data, var) 
       F = getfield(data, var);
   else
       error(strcat('this indicator requires a data struct with .', var))

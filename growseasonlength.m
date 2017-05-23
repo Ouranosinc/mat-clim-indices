@@ -1,11 +1,15 @@
 function indicator = growseasonlength(data, dates, code)
 
+% Code = 1 return the start date of the growing season (julian day)
+% Code = 2 return the end date of the growing season (julian day)
+% Code = 3 return the length of the growing season (days)
+
 min_year = min(unique(dates(:, 1)));
 max_year = max(unique(dates(:, 1)));
 fields = fieldnames(data);
 time_dim = (size(data.(fields{1})) == size(dates, 1));
 indicator.data  = zeros(size(min_year:max_year, 2), size(data.(fields{1}), find(~time_dim)));
-indicator.dates = zeros(size(min_year:max_year, 1), 3);
+indicator.dates = zeros(size(min_year:max_year, 1), 1);
 
 if isfield(data,'tas')
 else error('this indicator requires a data struct with .tas ')
@@ -20,13 +24,10 @@ if time_dim ~= 1
     data.pr = data.pr';
 end
 
-time_dim = size(data.tas) == size(dates, 1);
-
-if size(data.tas(dates(:,1)==min_year,:),find(time_dim))<360
+if size(data.tas(dates(:, 1) == min_year, :), find(time_dim)) < 360
     error('this indicator requires daily data')
 end
-indicator.data = zeros(size(min_year:max_year, 1), size(data.tas, find(~time_dim)));
-indicator.dates = zeros(size(min_year:max_year, 1), 3);
+
 t55 = 5.5; % Threshold for start and end of growing season
 W=[ 1 4 6 4 1 ]./16; % Weights for moving average
 
@@ -74,7 +75,7 @@ for y = min_year:max_year
             end
         end
     end
-    indicator.dates(y - min_year + 1, :) = [y 8 1];
+    indicator.dates(y - min_year + 1, 1) = y;
     indicator.units = 'Growing season (dates or nb. days)';
     
 end

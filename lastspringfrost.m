@@ -1,7 +1,5 @@
 function indicator = lastspringfrost(data, thres)
 
-% thres = 0;
-
 dates = data.dates;
 
 min_year = min(unique(dates(:, 1)));
@@ -24,13 +22,13 @@ for y = min_year:max_year
     temp = data.tasmin(dates(:, 1) == y & datenum([y, 8, 1]) >= datenum(dates), :);
     temp_dates = dates(dates(:, 1) == y & datenum([y, 8, 1]) >= datenum(dates), :);
     log = temp <= thres;
-    for i=1:size(log,2)
-        last =find(log(:,i) ~= 0, 1, 'last');
+    for i = 1:size(log,2)
+        last = find(log(:,i) ~= 0, 1, 'last');
         if isempty(last)
             last = 1;%put last spring frost on jan1st if no frost
         end
-        indicator.data(y-min_year +1,i,:)=datenum(temp_dates(last,:))-datenum([y,1,1]);
+        indicator.data(y - min_year + 1, i, :) = datenum(temp_dates(last, :)) - datenum([y,1,1]);
     end
-    indicator.dates(y-min_year +1,:) = [y 8 1];
+    indicator.dates(y - min_year + 1, :) = [y 8 1];
 end
 indicator.units = 'date';

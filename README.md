@@ -32,28 +32,35 @@ indicator.units % Unit
 
 ### Annual mean
 ```matlab
-indicator = annualmean(data, dates, var::String)
+indicator = annualmean(data, var::String)
 
 Defn. Returns the annual mean values of variable 'var'.
 ```
 
 ### Annual maximum
 ```matlab
-indicator = annualmax(data, dates, var::String)
+indicator = annualmax(data, var::String)
 
 Defn. Returns the annual maximum values of variable 'var'.
 ```
 
 ### Annual minimum
 ```matlab
-indicator = annualmin(data, dates, var::String)
+indicator = annualmin(data, var::String)
 
 Defn. Returns the annual minimum values of variable 'var'.
 ```
 
+### Annual sum
+```matlab
+indicator = annualsum(data, var::String)
+
+Defn. Returns the annual summation of variable 'var'.
+```
+
 ### Growing season (length, start date, end date)
 ```matlab
-indicator = growseasonlength(data, dates, code::Int)
+indicator = growseasonlength(data, code::Int)
 
 Defn. Returns the length of the growing season. Needs variable 'tas' in data struct.
 Code = 1 return the start date of the growing season (julian day)
@@ -63,21 +70,28 @@ Code = 3 return the length of the growing season (days)
 
 ### Mean precipitation during the growing season
 ```matlab
-indicator = pr_growseason_mean(data, dates)
+indicator = pr_growseason_mean(data)
 
 Defn. Mean precipitation during the growing season. Needs variables 'pr' and 'tas' in data struct.
 ```
 
+### Precipitation during the growing season
+```matlab
+indicator = pr_growseason(data)
+
+Defn. Precipitation total during the growing season. Needs variables 'pr' and 'tas' in data struct.
+```
+
 ### Annual frequency over a threshold
 ```matlab
-indicator = thresover(data, dates, var, thres::Int/Float)
+indicator = thresover(data, var, thres::Int/Float)
 
 Defn. Returns the frequency of tasmax over a custom threshold 'thres'. Needs variables 'tasmax' data struct.
 ```
 
 ### Unités thermique du maïs (Corn Heat Unit)
 ```matlab
-indicator = utm(data, dates)
+indicator = utm(data)
 
 Defn. Returns the value of 'Unités thermiques maïs'.
 ```
@@ -86,5 +100,28 @@ Defn. Returns the value of 'Unités thermiques maïs'.
 ```matlab
 indicator = grow_dd(data, thres::Float)
 
-Defn. Returns the growing degree days, as defined by the cumulative tempeature over the threshold 'thres'.
+Defn. Returns the growing degree days, as defined by the cumulative temperature over the threshold 'thres'.
+```
+
+### Last spring frost
+```matlab
+indicator = lastspringfrost(data, thres::Float)
+
+Defn. Returns the julian day of the last spring frost with respect to threshold 'thres' (usually 0 Celsius).
+```
+
+### Length of frost free season
+```matlab
+indicator = cnfd(data)
+
+Defn. Returns the length of the frost-free season. Hardcoded to lastspringfrost of 0 Celsius and firstfallfrost of -2 Celsius.
+
+N.B. cnfd stands for "consecutive no frost days".
+```
+
+### First fall frost
+```matlab
+indicator = firstfallfrost(data, thres::Float)
+
+Defn. Returns the julian day of the first spring frost with respect to threshold 'thres' (usually -2 Celsius)
 ```

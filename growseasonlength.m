@@ -31,7 +31,7 @@ if size(data.tas(dates(:, 1) == min_year, :), find(time_dim)) < 360
 end
 
 t55 = 5.5; % Threshold for start and end of growing season
-W=[ 1 4 6 4 1 ]./16; % Weights for moving average
+W=[ 1 4 6 4 1 ] ./ 16; % Weights for moving average
 
 for y = min_year:max_year
     temp = data.tas(dates(:, 1) == y, :);

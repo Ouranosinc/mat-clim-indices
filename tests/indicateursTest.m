@@ -39,3 +39,17 @@ assert(roundn(growdd.data(1, 1), -3) == 1908.689);
 utmdata = utm(data);
 assert(roundn(utmdata.data(1, 1), -3) == 3076.387);
 
+%% Length of season without frost
+frost = cnfd(data);
+assert(frost.data(1, 1) == 206);
+
+%% Annual sum
+annsum = annualsum(data, 'pr');
+assert(roundn(annsum.data(1, 1), -3) == 911.643);
+
+%% Mean Precip during growing season
+prgrow = pr_growseason_mean(data);
+assert(roundn(prgrow.data(1, 1), -3) == 2.409);
+%% Precip during growing season
+prgrow = pr_growseason(data);
+assert(roundn(prgrow.data(1, 1), -3) == 479.470);

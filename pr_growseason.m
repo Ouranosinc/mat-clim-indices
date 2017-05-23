@@ -1,4 +1,4 @@
-function indicator = pr_growseason_mean(data)
+function indicator = pr_growseason(data)
 
 dates = data.dates;
 
@@ -29,7 +29,7 @@ for y = min_year:max_year
     for i = 1:size(data.tas,2)
         temp = data.pr(beg_season.data(y - min_year + 1, i) + datenum([y 1 1]) <= datenum(dates) ...
             & end_season.data(y - min_year + 1, i) + datenum([y 1 1]) >= datenum(dates), i);
-        indicator.data(y-min_year +1,i) = sum(temp, 1) ./ length(temp);
+        indicator.data(y-min_year +1,i) = sum(temp, 1);
     end
     indicator.dates(y-min_year +1,:) = [y 8 1];
 end

@@ -1,5 +1,7 @@
-function indicator = annualmin(data, dates, var)
+function indicator = annualmin(data, var)
   % annual min for variable "var"
+  
+  dates = data.dates;
   
   min_year = min(unique(dates(:, 1)));
   max_year = max(unique(dates(:, 1)));

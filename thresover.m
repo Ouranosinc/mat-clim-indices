@@ -1,4 +1,6 @@
-function indicator = thresover(data, dates, var, th)
+function indicator = thresover(data, var, th)
+
+dates = data.dates;
 
 min_year = min(unique(dates(:, 1)));
 max_year = max(unique(dates(:, 1)));

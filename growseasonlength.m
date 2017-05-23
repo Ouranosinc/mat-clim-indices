@@ -1,8 +1,10 @@
-function indicator = growseasonlength(data, dates, code)
+function indicator = growseasonlength(data, code)
 
 % Code = 1 return the start date of the growing season (julian day)
 % Code = 2 return the end date of the growing season (julian day)
 % Code = 3 return the length of the growing season (days)
+
+dates = data.dates;
 
 min_year = min(unique(dates(:, 1)));
 max_year = max(unique(dates(:, 1)));

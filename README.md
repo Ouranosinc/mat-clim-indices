@@ -11,11 +11,14 @@ data.tasmin % Daily minimum temperature
 data.tasmax % Daily maximum temperature
 data.pr % Daily precipitation accumulation
 data.tas % Daily mean temperature
+data.dates % Dates vector
 ```
 
-A time vector of size `MxN` is also necessary, where `M` is the number of timesteps and `N` has at least a length of 3 (year, month, day). This can be created by the `MATLAB` function `datevec`.
+A time vector of size `MxN` is also necessary in the data struct, where `M` is the number of timesteps and `N` has at least a length of 3 (year, month, day). This can be created by the `MATLAB` function `datevec`.
 
 Some functions needs other argument, such as the variable field. For example, `tas`, `pr`, `tasmax`, `tasmin` is needed for functions that calculate annual means, max and minium (i.e. `annualmean`, `annualmin`, `annualmax`).
+
+*N.B. It is not necessary to have all variables (e.g. `.tasmin`, `.tasmax`, `.pr` and `.tas`) in the data struct if the called functions does not need it. However, the `.dates` field is necessary.*
 
 # Functions
 

@@ -40,9 +40,12 @@ Defn. Returns the annual minimum values of variable 'var'.
 ```
 
 ```matlab
-indicator = growseasonlength(data, dates)
+indicator = growseasonlength(data, dates, code)
 
 Defn. Returns the length of the growing season. Needs variable 'tas' in data struct.
+Code = 1 return the start date of the growing season (julian day)
+Code = 2 return the end date of the growing season (julian day)
+Code = 3 return the length of the growing season (days)
 ```
 
 ```matlab

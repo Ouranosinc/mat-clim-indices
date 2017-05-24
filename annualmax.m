@@ -3,8 +3,8 @@ function indicator = annualmax(data, var)
   
   dates = data.dates;
   
-  min_year = min(unique(dates(:, 1)));
-  max_year = max(unique(dates(:, 1)));
+  min_year = min(dates(:, 1));
+  max_year = max(dates(:, 1));
   fields = fieldnames(data);
   time_dim = (size(data.(fields{1})) == size(dates,1));
   indicator.data  = zeros(size(min_year:max_year, 2), size(data.(fields{1}), find(~time_dim)));

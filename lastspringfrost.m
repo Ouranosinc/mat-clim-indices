@@ -18,9 +18,10 @@ if size(data.tasmin(dates(:,1)==min_year,:),1)<360
 end
 
 for y = min_year:max_year
-    
-    temp = data.tasmin(dates(:, 1) == y & datenum([y, 8, 1]) >= datenum(dates), :);
-    temp_dates = dates(dates(:, 1) == y & datenum([y, 8, 1]) >= datenum(dates), :);
+%     fgdata = dates(:, 1) == y & datenum([y, 8, 1]) >= datenum(dates);
+    fgdata = dates(:, 1) == y & dates(:, 2) <= 8;
+    temp = data.tasmin(fgdata, :);
+    temp_dates = dates(fgdata, :);
     log = temp <= thres;
     for i = 1:size(log,2)
         last = find(log(:,i) ~= 0, 1, 'last');

@@ -40,7 +40,10 @@ utmdata = utm(data);
 assert(roundn(utmdata.data(1, 1), -3) == 3076.387);
 
 %% Length of season without frost
+% profile clear;profile on;
 frost = cnfd(data);
+% profile viewer
+
 assert(frost.data(1, 1) == 206);
 
 %% Annual sum

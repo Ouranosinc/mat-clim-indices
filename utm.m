@@ -30,30 +30,22 @@ for y = min_year:max_year
     temp_mean = data.tas(dates(:,1) == y, :);
     temp_dates = datenum(dates(dates(:, 1) == y, :));
     days = unique(floor(temp_dates));
-    for d = 1:length(days)
-        temp_mean_d = temp_mean(floor(temp_dates) == days(d), :);%this is to remove feb 29 and 30
-        temp_min_d = temp_min(floor(temp_dates) == days(d), :);%this is to remove feb 29 and 30
-        temp_max_d = temp_max(floor(temp_dates) == days(d), :);%this is to remove feb 29 and 30
-        day_temp_mean(d, :) = temp_mean_d(end, :);
-        day_temp_min(d, :) = temp_min_d(end, :);
-        day_temp_max(d, :) = temp_max_d(end, :);
-        day_dates(d, :)   = days(d);
-    end
+    
     clear temp
     for d = 5:length(days)    %left running avg, value represents last of series of 5
-        temp(d-4, :) = W * day_temp_mean(d-4:d, :);%look out, matrix multiply
+        temp(d-4, :) = W * temp_mean(d-4:d, :);%look out, matrix multiply
     end
     new_dates = days(5:end);
     
     %find beginning: when run. avg?12.8 for 1st time (5th day of
     %5-day run avg)
     first128 = arrayfun(@(i) ...
-        find(temp(:,i) >= t128&new_dates > last_spring_frost(:, i), 1, 'first'),...
+        find(temp(:,i) >= t128 & new_dates > last_spring_frost(:, i), 1, 'first'),...
         1:size(temp, 2), 'UniformOutput', false);
     
     
     %find end: first kill frost (tmin< -2C)
-    log2 = day_temp_min < -2.;
+    log2 = temp_min < -2.;
     for i = 1:length(first128)
         log2(1:first128{i}, i) = 0;
     end
@@ -63,15 +55,15 @@ for y = min_year:max_year
         if isempty(first128{i})
             first128{i} = length(new_dates);
         end
-        fin = find(day_dates - datenum([y,1,1]) == floor(firstKillFrost(year_ind, i)));
-        Ymax = 3.33* (day_temp_max(first128{i}:fin, i) - 10) - ...
-            0.084 * (day_temp_max(first128{i}:fin, i) - 10) .*...
-            (day_temp_max(first128{i}:fin, i) - 10);
+        fin = find(days - datenum([y,1,1]) == floor(firstKillFrost(year_ind, i)));
+        Ymax = 3.33* (temp_max(first128{i}:fin, i) - 10) - ...
+            0.084 * (temp_max(first128{i}:fin, i) - 10) .*...
+            (temp_max(first128{i}:fin, i) - 10);
         
-        Ymin = 1.8 * (day_temp_min(first128{i}:fin, i) - 4.4);
+        Ymin = 1.8 * (temp_min(first128{i}:fin, i) - 4.4);
         
-        Ymax(day_temp_max(first128{i}:fin, i) < 10) = 0;
-        Ymin(day_temp_min(first128{i}:fin, i) < 4.4) = 0;        
+        Ymax(temp_max(first128{i}:fin, i) < 10) = 0;
+        Ymin(temp_min(first128{i}:fin, i) < 4.4) = 0;
         
         indicator.data(y - min_year + 1, i) = sum((Ymax + Ymin) / 2);
         indicator.units = 'UTM (cumul)';

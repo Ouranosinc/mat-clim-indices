@@ -23,5 +23,6 @@ function indicator = annualmin(data, var)
   end
   
   indicator.units = 'deg C';
-  indicator.var = strcat(['Annual min of ', var]);
+  indicator.title = strcat(['Annual min of ', var]);
+  
 end

@@ -28,6 +28,7 @@ The functions returns a struct.
 indicator.data % Data array
 indicator.dates % Date array
 indicator.units % Unit
+indicator.title % Title (for figure re-use)
 ```
 
 ### Annual mean

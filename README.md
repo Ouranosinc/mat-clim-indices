@@ -1,5 +1,5 @@
 # mat-clim-indices
-This repo is for Climate indices in MATLAB.
+This repo is a collection of Climate indices in MATLAB.
 
 # Information
 The functions takes a data structure with the variables as fields. The variables array can be of dimensions 1, 2 or 3.

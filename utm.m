@@ -66,10 +66,12 @@ for y = min_year:max_year
         Ymin(temp_min(first128{i}:fin, i) < 4.4) = 0;
         
         indicator.data(y - min_year + 1, i) = sum((Ymax + Ymin) / 2);
-        indicator.units = 'UTM (cumul)';
+        
         
     end
     indicator.dates(y-min_year + 1, 1) = y;
     
 end
+indicator.units = 'UTM (cumul)';
+indicator.title = 'UTM (cumul)';
 end

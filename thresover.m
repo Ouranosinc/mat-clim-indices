@@ -26,4 +26,5 @@ for y = min_year:max_year
     indicator.dates(y - min_year + 1, :) = y;
 end
 indicator.units = ['number occ. > ' num2str(th)];
+indicator.title = strcat(['Number occurrence of ', var, ' > ' num2str(th)]);
 end

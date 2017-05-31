@@ -23,4 +23,5 @@ function indicator = annualsum(data, var)
   
   indicator.units = 'deg C';
   indicator.var = strcat(['Annual max of ', var]);
+  indicator.title = strcat(['Annual sum of ', var]);
 end

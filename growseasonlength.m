@@ -59,6 +59,7 @@ for y = min_year:max_year
                 indicator.data(y - min_year + 1, i) = 0;
             end
             indicator.units = 'Growing season start (julian day)';
+            indicator.title = 'Growing season start (julian day)';
             
         elseif code == 2 % end of growing season length
             try
@@ -67,6 +68,7 @@ for y = min_year:max_year
                 indicator.data(y - min_year + 1, i) = 0;
             end
             indicator.units = 'Growing season end (julian day)';
+            indicator.title = 'Growing season end (julian day)';
             
         elseif code == 3 % length of growing season length
             try
@@ -76,6 +78,7 @@ for y = min_year:max_year
                 indicator.data(y - min_year + 1, i) = 0;
             end
             indicator.units = 'Growing season Length (nb. days)';
+            indicator.title = 'Growing season Length (nb. days)';
         end
     end
     

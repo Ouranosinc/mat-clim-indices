@@ -36,4 +36,5 @@ end
 
 indicator.units = 'mean precip during growing season (mm)';
 indicator.dates(y - min_year + 1, :) = [y 8 1];
+indicator.title = 'Mean precipitation during growing season (mm)';
 end

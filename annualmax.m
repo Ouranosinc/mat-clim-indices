@@ -24,4 +24,5 @@ function indicator = annualmax(data, var)
   
   indicator.units = 'deg C';
   indicator.var = strcat(['Annual max of ', var]);
+  indicator.title = strcat(['Annual maximum of ', var]);
 end

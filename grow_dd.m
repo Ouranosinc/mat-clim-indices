@@ -37,4 +37,5 @@ end
 indicator.units = [ 'DD > ' num2str(thres) ' C'];
 indicator.dates(y - min_year + 1, :) = [y 8 1];
 indicator.units = [ 'DD > ' num2str(thres) ' C'];
+indicator.title = [ 'Growing Degree days  (> ' num2str(thres) ' C)'];
 end

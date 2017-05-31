@@ -13,8 +13,9 @@ deb = lastspringfrost(data, 0);
 fin = firstfallfrost(data, -2);
 
 indicator.data = datenum(fin.data)-datenum(deb.data);
-indicator.units = 'length of season, in days';
 indicator.dates = deb.dates;
+indicator.units = 'length of season, in days';
+indicator.title = 'Length of frost-free season (days)';
 
 
 end

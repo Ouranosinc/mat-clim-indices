@@ -23,4 +23,5 @@ function indicator = annualmean(data, var)
   
   indicator.units = 'deg C';
   indicator.var = strcat(['Annual mean of ', var]);
+  indicator.title = strcat(['Annual mean of ', var]);
 end

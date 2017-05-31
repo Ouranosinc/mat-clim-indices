@@ -34,6 +34,7 @@ for y = min_year:max_year
     indicator.dates(y-min_year +1,:) = [y 8 1];
 end
 
-indicator.units = 'mean precip during growing season (mm)';
+indicator.units = 'Precip during growing season (mm)';
+indicator.title = 'Precipitation total during growing season (mm)';
 indicator.dates(y - min_year + 1, :) = [y 8 1];
 end

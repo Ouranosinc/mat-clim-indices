@@ -6,8 +6,8 @@ min_year = min(dates(:, 1));
 max_year = max(dates(:, 1));
 fields = fieldnames(data);
 time_dim = (size(data.(fields{1})) == size(dates,1));
-indicator.data  = zeros(size(min_year:max_year, 2), size(data.(fields{1}), find(~time_dim)));
-indicator.dates = zeros(size(min_year:max_year, 1), 1);
+indicator.data  = NaN(size(min_year:max_year, 2), size(data.(fields{1}), find(~time_dim)));
+indicator.dates = NaN(size(min_year:max_year, 1), 1);
 
 if isfield(data, var)
     F = getfield(data, var);

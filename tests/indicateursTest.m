@@ -19,6 +19,14 @@ assert(length(pr.data) == 4);
 assert(pr.dates(1) == 1950);
 assert(pr.dates(end) == 1953);
 
+%% JJA sum
+jja = jjasum(data, 'pr');
+assert(roundn(jja.data(1), -3) == 227.270);
+
+%% DJF sum
+djf = djfsum(data, 'pr');
+assert(roundn(djf.data(2), -3) == 176.852);
+
 %% Custom threshold over (frequency)
 tx30 = thresover(data, 'tasmax', 30);
 assert(tx30.data(1, 1) == 13);

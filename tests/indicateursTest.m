@@ -26,6 +26,7 @@ assert(roundn(jja.data(1), -3) == 227.270);
 %% DJF sum
 djf = djfsum(data, 'pr');
 assert(roundn(djf.data(2), -3) == 176.852);
+assert(isnan(djf.data(1)));
 
 %% Custom threshold over (frequency)
 tx30 = thresover(data, 'tasmax', 30);

@@ -59,6 +59,20 @@ indicator = annualsum(data, var::String)
 Defn. Returns the annual summation of variable 'var'.
 ```
 
+### December-January-February sum
+```matlab
+indicator = djfsum(data, var::String)
+
+Defn. Returns the seasonal summation of variable 'var' over December, January and February.
+```
+
+### June-July-August sum
+```matlab
+indicator = jjasum(data, var::String)
+
+Defn. Returns the seasonal summation of variable 'var' over June, July and August.
+```
+
 ### Growing season (length, start date, end date)
 ```matlab
 indicator = growseasonlength(data, code::Int)

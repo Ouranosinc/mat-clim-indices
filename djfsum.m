@@ -1,4 +1,4 @@
-function indicator = djfsum(data, var)
+function indicator = djfsum(data, var, output)
 % December to February sum for variable "var"
 
 dates = data.dates;
@@ -31,5 +31,11 @@ end
 indicator.units = 'deg C';
 indicator.var = strcat(['DJF sum of ', var]);
 indicator.title = strcat(['DJF sum of ', var]);
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 
 end

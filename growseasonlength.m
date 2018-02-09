@@ -1,4 +1,4 @@
-function indicator = growseasonlength(data, code)
+function indicator = growseasonlength(data, code, output)
 
 % Code = 1 return the start date of the growing season (julian day)
 % Code = 2 return the end date of the growing season (julian day)
@@ -85,4 +85,11 @@ for y = min_year:max_year
     indicator.dates(y - min_year + 1, 1) = y;    
     
 end
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
+
 end

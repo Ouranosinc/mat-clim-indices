@@ -1,4 +1,4 @@
-function indicator = pr_growseason(data)
+function indicator = pr_growseason(data, output)
 
 dates = data.dates;
 
@@ -37,4 +37,10 @@ end
 indicator.units = 'Precip during growing season (mm)';
 indicator.title = 'Precipitation total during growing season (mm)';
 indicator.dates(y - min_year + 1, :) = [y 8 1];
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 end

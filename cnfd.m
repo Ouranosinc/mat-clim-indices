@@ -1,4 +1,4 @@
-function indicator = cnfd(data)
+function indicator = cnfd(data, output)
 
 dates = data.dates;
 
@@ -16,6 +16,12 @@ indicator.data = datenum(fin.data)-datenum(deb.data);
 indicator.dates = deb.dates;
 indicator.units = 'length of season, in days';
 indicator.title = 'Length of frost-free season (days)';
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 
 
 end

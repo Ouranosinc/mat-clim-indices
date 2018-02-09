@@ -1,4 +1,4 @@
-function indicator = annualmax(data, var)
+function indicator = annualmax(data, var, output)
   % annual max for variable "var"
   
   dates = data.dates;
@@ -25,4 +25,10 @@ function indicator = annualmax(data, var)
   indicator.units = 'deg C';
   indicator.var = strcat(['Annual max of ', var]);
   indicator.title = strcat(['Annual maximum of ', var]);
+  
+  if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 end

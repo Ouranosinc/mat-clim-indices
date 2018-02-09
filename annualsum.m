@@ -1,4 +1,4 @@
-function indicator = annualsum(data, var)
+function indicator = annualsum(data, var, output)
   % annual sum for variable "var"
   
   dates = data.dates;
@@ -24,4 +24,10 @@ function indicator = annualsum(data, var)
   indicator.units = 'deg C';
   indicator.var = strcat(['Annual sum of ', var]);
   indicator.title = strcat(['Annual sum of ', var]);
+  
+  if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 end

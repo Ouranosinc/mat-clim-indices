@@ -1,4 +1,4 @@
-function indicator = lastspringfrost(data, thres)
+function indicator = lastspringfrost(data, thres, output)
 
 dates = data.dates;
 
@@ -34,3 +34,9 @@ for y = min_year:max_year
 end
 indicator.units = 'date';
 indicator.title = 'Date of last spring frost';
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end

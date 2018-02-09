@@ -1,4 +1,4 @@
-function indicator = firstfallfrost(data, thres)
+function indicator = firstfallfrost(data, thres, output)
 
 dates = data.dates;
 
@@ -38,4 +38,10 @@ for y = min_year:max_year
 end
 indicator.units = 'date';
 indicator.title = 'Date of first fall frost';
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 end

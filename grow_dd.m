@@ -1,4 +1,4 @@
-function indicator = grow_dd(data, thres)
+function indicator = grow_dd(data, thres, output)
 
 dates = data.dates;
 
@@ -38,4 +38,11 @@ indicator.units = [ 'DD > ' num2str(thres) ' C'];
 indicator.dates(y - min_year + 1, :) = [y 8 1];
 indicator.units = [ 'DD > ' num2str(thres) ' C'];
 indicator.title = [ 'Growing Degree days  (> ' num2str(thres) ' C)'];
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
+
 end

@@ -1,4 +1,4 @@
-function indicator = thresover(data, var, th)
+function indicator = thresover(data, var, th, output)
 
 dates = data.dates;
 
@@ -27,4 +27,10 @@ for y = min_year:max_year
 end
 indicator.units = ['number occ. > ' num2str(th)];
 indicator.title = strcat(['Number occurrence of ', var, ' > ' num2str(th)]);
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
 end

@@ -1,4 +1,4 @@
-function indicator = utm(data)
+function indicator = utm(data, output)
 
 dates = data.dates;
 
@@ -74,4 +74,11 @@ for y = min_year:max_year
 end
 indicator.units = 'UTM (cumul)';
 indicator.title = 'UTM (cumul)';
+
+if exist('output','var')
+    assert(strcmp(output, 'matrix'))
+    % output parameter exist, so output only the data matrix
+    indicator = indicator.data;
+end
+
 end
